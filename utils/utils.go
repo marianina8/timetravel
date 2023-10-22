@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"strings"
 	"time"
 )
@@ -20,4 +21,10 @@ func ParseDestination(s string) (time.Time, error) {
 	}
 
 	return t, nil
+}
+
+func Print(s string) {
+	fmt.Println("****************************************************************************************************")
+	fmt.Println(s)
+	fmt.Println("****************************************************************************************************")
 }

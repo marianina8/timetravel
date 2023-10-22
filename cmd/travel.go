@@ -16,20 +16,21 @@ var travelCmd = &cobra.Command{
 }
 
 func travelTime(cmd *cobra.Command, args []string) {
-	destination, err := cmd.Flags().GetString("destination")
-	if err != nil {
-		fmt.Println("Unable to get destination: ", err)
+	if len(args) == 0 {
+		fmt.Println("Please enter a destination time!  The format input is MonthDayYearHourMinute -> MoDDYYYYHHMi")
+		return
 	}
+	destination := args[0]
 	parsedDestination, err := utils.ParseDestination(destination)
 	if err != nil {
 		fmt.Println("Unable to parse destination: ", err)
+		fmt.Println("For example, to travel to 12/25/2020 at 12:00am, enter: MoDDYYYYHHMi -> 122520200000")
 	}
 	formattedDestination := utils.FormatDestination(parsedDestination)
-
-	dashboard.New(formattedDestination)
-	speedometer.New()
-
-	fmt.Println("****************************************************************************************************")
-	fmt.Println("Time warp completed!  Welcome to ", formattedDestination, "!")
-	fmt.Println("****************************************************************************************************")
+	if dashboard.New(formattedDestination) {
+		speedometer.New()
+		utils.Print("Time warp completed!  Welcome to " + formattedDestination + "!")
+		return
+	}
+	utils.Print("Flux Capacitor Deactivated: Stay in the present, McFly!")
 }

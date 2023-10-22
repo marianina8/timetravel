@@ -116,8 +116,10 @@ func New(travelTime string) bool {
 		panic(err)
 	}
 
+	quit := false
 	quitter := func(k *terminalapi.Keyboard) {
 		if k.Key == 'q' || k.Key == 'Q' {
+			quit = true
 			cancel()
 		}
 	}
@@ -126,5 +128,5 @@ func New(travelTime string) bool {
 		panic(err)
 	}
 
-	return true
+	return !quit
 }

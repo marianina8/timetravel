@@ -14,7 +14,6 @@ func Execute() error {
 }
 
 func init() {
-	travelCmd.Flags().StringP("destination", "d", "102619850121", "Destination for time travel in MMDDYYYYHHMM format")
 	rootCmd.AddCommand(travelCmd)
 	rootCmd.AddCommand(surveyCmd)
 }
