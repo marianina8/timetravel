@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"time"
 )
@@ -27,4 +28,16 @@ func Print(s string) {
 	fmt.Println("****************************************************************************************************")
 	fmt.Println(s)
 	fmt.Println("****************************************************************************************************")
+}
+
+func IsTerminal() (bool, error) {
+	fileInfo, err := os.Stdout.Stat()
+	if err != nil {
+		return false, err
+	}
+	if (fileInfo.Mode() & os.ModeCharDevice) != 0 {
+		return true, nil
+	} else {
+		return false, nil
+	}
 }

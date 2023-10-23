@@ -3,9 +3,8 @@ package dashboard
 import (
 	"context"
 	"fmt"
-	"time"
 
-	"github.com/marianina8/timetravel/utils"
+	"github.com/marianina8/timetravel/constants"
 	"github.com/mum4k/termdash"
 	"github.com/mum4k/termdash/cell"
 	"github.com/mum4k/termdash/container"
@@ -46,13 +45,13 @@ func New(travelTime string) bool {
 	}
 
 	if err := presentSD.Write([]*segmentdisplay.TextChunk{
-		segmentdisplay.NewChunk(utils.FormatDestination(time.Now())),
+		segmentdisplay.NewChunk(constants.Now),
 	}); err != nil {
 		panic(err)
 	}
 
 	if err := departedSD.Write([]*segmentdisplay.TextChunk{
-		segmentdisplay.NewChunk(utils.FormatDestination(time.Now().Add(-4 * time.Minute))),
+		segmentdisplay.NewChunk(constants.LastDeparture),
 	}); err != nil {
 		panic(err)
 	}

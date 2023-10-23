@@ -14,6 +14,6 @@ func Execute() error {
 }
 
 func init() {
-	rootCmd.AddCommand(travelCmd)
+	rootCmd.AddCommand(toCmd)
 	rootCmd.AddCommand(surveyCmd)
 }

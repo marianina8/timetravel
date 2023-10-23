@@ -1,119 +1,41 @@
 package survey
 
 import (
+	"bufio"
 	"fmt"
-	"io"
 	"os"
-	"strings"
-
-	"github.com/charmbracelet/bubbles/list"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
 )
-
-const listHeight = 14
-
-var (
-	titleStyle        = lipgloss.NewStyle().MarginLeft(2)
-	itemStyle         = lipgloss.NewStyle().PaddingLeft(4)
-	selectedItemStyle = lipgloss.NewStyle().PaddingLeft(2).Foreground(lipgloss.Color("170"))
-	paginationStyle   = list.DefaultStyles().PaginationStyle.PaddingLeft(4)
-	helpStyle         = list.DefaultStyles().HelpStyle.PaddingLeft(4).PaddingBottom(1)
-	quitTextStyle     = lipgloss.NewStyle().Margin(1, 0, 2, 4)
-)
-
-type item string
-
-func (i item) FilterValue() string { return "" }
-
-type itemDelegate struct{}
-
-func (d itemDelegate) Height() int                             { return 1 }
-func (d itemDelegate) Spacing() int                            { return 0 }
-func (d itemDelegate) Update(_ tea.Msg, _ *list.Model) tea.Cmd { return nil }
-func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list.Item) {
-	i, ok := listItem.(item)
-	if !ok {
-		return
-	}
-
-	str := fmt.Sprintf("%d. %s", index+1, i)
-
-	fn := itemStyle.Render
-	if index == m.Index() {
-		fn = func(s ...string) string {
-			return selectedItemStyle.Render("> " + strings.Join(s, " "))
-		}
-	}
-
-	fmt.Fprint(w, fn(str))
-}
-
-type model struct {
-	list     list.Model
-	choice   string
-	quitting bool
-}
-
-func (m model) Init() tea.Cmd {
-	return nil
-}
-
-func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	switch msg := msg.(type) {
-	case tea.WindowSizeMsg:
-		m.list.SetWidth(msg.Width)
-		return m, nil
-
-	case tea.KeyMsg:
-		switch keypress := msg.String(); keypress {
-		case "ctrl+c":
-			m.quitting = true
-			return m, tea.Quit
-		case "enter":
-			i, ok := m.list.SelectedItem().(item)
-			if ok {
-				m.choice = string(i)
-			}
-			return m, tea.Quit
-		}
-	}
-
-	var cmd tea.Cmd
-	m.list, cmd = m.list.Update(msg)
-	return m, cmd
-}
-
-func (m model) View() string {
-	if m.quitting {
-		return quitTextStyle.Render("See you next time!")
-	}
-	return "\n" + m.list.View()
-}
 
 func Run() {
-	items := []list.Item{
-		item("Breathtaking"),
-		item("Too fast!"),
-		item("Can we go again?"),
+	displayMenu()
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		choice := scanner.Text()
+		printResponse(choice)
 	}
-
-	const defaultWidth = 20
-
-	l := list.New(items, itemDelegate{}, defaultWidth, listHeight)
-	l.Title = "How was the journey?"
-	l.SetShowStatusBar(false)
-	l.SetFilteringEnabled(false)
-	l.Styles.Title = titleStyle
-	l.Styles.PaginationStyle = paginationStyle
-	l.Styles.HelpStyle = helpStyle
-
-	m := model{list: l}
-
-	if _, err := tea.NewProgram(m).Run(); err != nil {
-		fmt.Println("Error running program:", err)
-		os.Exit(1)
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintln(os.Stderr, "Error reading input:", err)
 	}
+}
 
-	fmt.Println("Thanks for your feedback!")
+func displayMenu() {
+	fmt.Println("    How was the journey?      ")
+	fmt.Println("                             ")
+	fmt.Println("    1. Breathtaking          ")
+	fmt.Println("    2. Too fast!             ")
+	fmt.Println("    3. Can we go again?      ")
+	fmt.Print("Enter your choice (1/2/3): ")
+}
+
+func printResponse(choice string) {
+	switch choice {
+	case "1":
+		fmt.Println("Glad you enjoyed the breathtaking view of time!")
+	case "2":
+		fmt.Println("88 miles per hour can indeed feel a bit quick!")
+	case "3":
+		fmt.Println("Hold on tight to that flux capacitor and let's do it again!")
+	default:
+		fmt.Println("Hmm, that wasn't an option on our time circuit.")
+	}
 }
