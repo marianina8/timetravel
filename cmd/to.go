@@ -21,11 +21,12 @@ var toCmd = &cobra.Command{
 }
 
 func to(cmd *cobra.Command, args []string) {
+	fmt.Println(args)
 	if len(args) == 0 {
 		fmt.Println("Please enter a destination time!  The format input is MonthDayYearHourMinute -> MoDDYYYYHHMi")
 		return
 	}
-	if len(args) != 0 {
+	if len(args) != 1 {
 		fmt.Println("Only one parameter expected.  Please enter a destination time in the format input of MonthDayYearHourMinute -> MoDDYYYYHHMi")
 		return
 	}

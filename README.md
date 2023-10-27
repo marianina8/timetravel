@@ -25,7 +25,7 @@ To build and run the `timetravel` CLI, you will need:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/timetravel.git
+git clone https://github.com/marianina8/timetravel.git
 ```
 
 2. Build the CLI:
