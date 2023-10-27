@@ -18,6 +18,10 @@ func Run() {
 	}
 }
 
+func Skip() {
+	fmt.Println("Skipping survey.  We hope you enjoyed your time travel experience!")
+}
+
 func displayMenu() {
 	fmt.Println("    How was the journey?      ")
 	fmt.Println("                             ")
