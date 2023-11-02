@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/marianina8/timetravel/constants"
 	"github.com/mum4k/termdash"
 	"github.com/mum4k/termdash/cell"
 	"github.com/mum4k/termdash/container"
@@ -15,7 +14,7 @@ import (
 	"github.com/mum4k/termdash/widgets/segmentdisplay"
 )
 
-func New(travelTime string) bool {
+func New(destination, present, lastDeparture string) bool {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Println("Recovered from panic:", r)
@@ -39,19 +38,19 @@ func New(travelTime string) bool {
 	}
 
 	if err := destinationSD.Write([]*segmentdisplay.TextChunk{
-		segmentdisplay.NewChunk(travelTime),
+		segmentdisplay.NewChunk(destination),
 	}); err != nil {
 		panic(err)
 	}
 
 	if err := presentSD.Write([]*segmentdisplay.TextChunk{
-		segmentdisplay.NewChunk(constants.Now),
+		segmentdisplay.NewChunk(present),
 	}); err != nil {
 		panic(err)
 	}
 
 	if err := departedSD.Write([]*segmentdisplay.TextChunk{
-		segmentdisplay.NewChunk(constants.LastDeparture),
+		segmentdisplay.NewChunk(lastDeparture),
 	}); err != nil {
 		panic(err)
 	}

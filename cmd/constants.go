@@ -1,4 +1,4 @@
-package constants
+package cmd
 
 import (
 	"time"

@@ -4,9 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/marianina8/timetravel/constants"
 	"github.com/marianina8/timetravel/dashboard"
-	"github.com/marianina8/timetravel/models"
 	"github.com/marianina8/timetravel/speedometer"
 	"github.com/marianina8/timetravel/utils"
 	"github.com/spf13/cobra"
@@ -65,10 +63,10 @@ func to(cmd *cobra.Command, args []string) {
 }
 
 func jsonOutput(destination string) error {
-	dashboard := models.Dashboard{
+	dashboard := Dashboard{
 		Destination:   destination,
-		Present:       constants.Now,
-		LastDeparture: constants.LastDeparture,
+		Present:       Now,
+		LastDeparture: LastDeparture,
 		Completed:     timeWarp(),
 	}
 	output, err := json.MarshalIndent(dashboard, "", "  ")
@@ -80,10 +78,10 @@ func jsonOutput(destination string) error {
 }
 
 func yamlOutput(destination string) error {
-	dashboard := models.Dashboard{
+	dashboard := Dashboard{
 		Destination:   destination,
-		Present:       constants.Now,
-		LastDeparture: constants.LastDeparture,
+		Present:       Now,
+		LastDeparture: LastDeparture,
 		Completed:     timeWarp(),
 	}
 
@@ -96,10 +94,10 @@ func yamlOutput(destination string) error {
 }
 
 func textOutput(destination string) error {
-	dashboard := models.Dashboard{
+	dashboard := Dashboard{
 		Destination:   destination,
-		Present:       constants.Now,
-		LastDeparture: constants.LastDeparture,
+		Present:       Now,
+		LastDeparture: LastDeparture,
 		Completed:     timeWarp(),
 	}
 
@@ -115,7 +113,7 @@ func textOutput(destination string) error {
 }
 
 func dashboardOutput(destination string) {
-	if dashboard.New(destination) {
+	if dashboard.New(destination, Now, LastDeparture) {
 		speedometer.New()
 		utils.Print("Time warp completed!  Welcome to " + destination + "!")
 		return

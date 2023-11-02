@@ -1,4 +1,4 @@
-package models
+package cmd
 
 type Dashboard struct {
 	Destination   string `json:"destination"`
