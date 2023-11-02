@@ -23,3 +23,8 @@ var feedbackCmd = &cobra.Command{
 		survey.Run()
 	},
 }
+
+
+func init() {
+	feedbackCmd.Flags().Bool("no-input", false, "disable interactivity and skip the survey")
+}

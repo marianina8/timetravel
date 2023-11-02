@@ -52,7 +52,7 @@ options:
 note:
   The 'dashboard' output format is a terminal dashboard meant for human consumption only.
 
-Need more details or facing issues? Refer to the official documentation at http://timetravel.com [does not exist yet].
+Need more details or facing issues? Refer to the official documentation at http://timetravelcli.com
     `
 	fmt.Println(helpMessage)
 }
