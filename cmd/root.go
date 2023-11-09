@@ -55,38 +55,5 @@ func timeTravelHelp(cmd *cobra.Command, args []string) {
 	helpMessage += header.Sprint("options:\n")
 	helpMessage += "  " + option.Sprint("-h, --help") + "       Show this help message and exit.\n\n"
 	helpMessage += "Need more details or facing issues? Refer to the official documentation at " + link.Sprint("http://timetravelcli.com") + "\n"
-
-	// 	helpMessage2 := `
-	// usage:
-	//   timetravel [command] [arguments]
-
-	// commands:
-	//   to        Travel to a specified daytime (in MoDDYYYYHHMi format).
-	//             Example:
-	//               timetravel to 070417761200
-	//             This will time travel to July 4, 1776 at 12:00am.
-
-	//             Options:
-	//               -o, --output    Specify the output format.
-	//                               Valid formats: text (default), json, yaml, dashboard.
-	//                               Example:
-	//                                 timetravel to 070417761200 -o=json
-	//                                 timetravel to 070417761200 --output=json
-
-	//   feedback  Post travel survey to gather your experience.
-	//             Example:
-	//               timetravel feedback
-
-	//             Options:
-	//               --no-input      Run the survey without user input.
-
-	// options:
-	//   -h, --help       Show this help message and exit.
-
-	// note:
-	//   The 'dashboard' output format is a terminal dashboard meant for human consumption only.
-
-	// Need more details or facing issues? Refer to the official documentation at http://timetravelcli.com
-	//     `
 	fmt.Println(helpMessage)
 }
