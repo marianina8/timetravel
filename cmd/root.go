@@ -3,6 +3,8 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/enescakir/emoji"
+	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -22,37 +24,69 @@ func init() {
 }
 
 func timeTravelHelp(cmd *cobra.Command, args []string) {
-	helpMessage := `
-usage:
-  timetravel [command] [arguments]
+	header := color.New(color.FgHiMagenta)
+	command := color.New(color.FgHiCyan)
+	option := color.New(color.FgHiGreen)
+	link := color.New(color.FgBlue)
+	example := color.New(color.FgWhite)
 
-commands:
-  to        Travel to a specified daytime (in MoDDYYYYHHMi format).
-            Example: 
-              timetravel to 070417761200 
-            This will time travel to July 4, 1776 at 12:00am.
+	helpMessage := "\n"
+	helpMessage += fmt.Sprintf("Timetravel CLI %v%v\n\n", emoji.Automobile, emoji.HighVoltage)
+	helpMessage += header.Sprint("usage:\n")
+	helpMessage += "  " + command.Sprint("timetravel") + " [command] [arguments]\n\n"
+	helpMessage += header.Sprint("commands:\n")
+	helpMessage += "  " + command.Sprint("to") + "        Travel to a specified daytime (in MoDDYYYYHHMi format).\n"
+	helpMessage += "            Example:\n"
+	helpMessage += "              " + example.Sprint("timetravel to 070417761200") + "\n"
+	helpMessage += "            This will time travel to July 4, 1776 at 12:00am.\n\n"
+	helpMessage += "            Options:\n"
+	helpMessage += "              " + option.Sprint("-o, --output") + "    Specify the output format. \n"
+	helpMessage += "                              Valid formats: text (default), json, yaml, dashboard.\n"
+	helpMessage += "                              Example:\n"
+	helpMessage += "                                " + example.Sprint("timetravel to 070417761200 -o=json") + "\n"
+	helpMessage += "                                " + example.Sprint("timetravel to 070417761200 --output=json") + "\n\n"
+	helpMessage += "            Note:\n"
+	helpMessage += "              " + "The 'dashboard' output format is a terminal dashboard meant for human consumption only.\n\n"
+	helpMessage += "  " + command.Sprint("feedback") + "  Post travel survey to gather your experience.\n"
+	helpMessage += "            Example:\n"
+	helpMessage += "              " + example.Sprint("timetravel feedback") + "\n\n"
+	helpMessage += "            Options:\n"
+	helpMessage += "              " + option.Sprint("--no-input") + "      Run the survey without user input. \n\n"
+	helpMessage += header.Sprint("options:\n")
+	helpMessage += "  " + option.Sprint("-h, --help") + "       Show this help message and exit.\n\n"
+	helpMessage += "Need more details or facing issues? Refer to the official documentation at " + link.Sprint("http://timetravelcli.com") + "\n"
 
-            Options:
-              -o, --output    Specify the output format. 
-                              Valid formats: text (default), json, yaml, dashboard.
-                              Example:
-                                timetravel to 070417761200 -o=json
-                                timetravel to 070417761200 --output=json
+	// 	helpMessage2 := `
+	// usage:
+	//   timetravel [command] [arguments]
 
-  feedback  Post travel survey to gather your experience.
-            Example:
-              timetravel feedback
+	// commands:
+	//   to        Travel to a specified daytime (in MoDDYYYYHHMi format).
+	//             Example:
+	//               timetravel to 070417761200
+	//             This will time travel to July 4, 1776 at 12:00am.
 
-            Options:
-              --no-input      Run the survey without user input. 
+	//             Options:
+	//               -o, --output    Specify the output format.
+	//                               Valid formats: text (default), json, yaml, dashboard.
+	//                               Example:
+	//                                 timetravel to 070417761200 -o=json
+	//                                 timetravel to 070417761200 --output=json
 
-options:
-  -h, --help       Show this help message and exit.
+	//   feedback  Post travel survey to gather your experience.
+	//             Example:
+	//               timetravel feedback
 
-note:
-  The 'dashboard' output format is a terminal dashboard meant for human consumption only.
+	//             Options:
+	//               --no-input      Run the survey without user input.
 
-Need more details or facing issues? Refer to the official documentation at http://timetravelcli.com
-    `
+	// options:
+	//   -h, --help       Show this help message and exit.
+
+	// note:
+	//   The 'dashboard' output format is a terminal dashboard meant for human consumption only.
+
+	// Need more details or facing issues? Refer to the official documentation at http://timetravelcli.com
+	//     `
 	fmt.Println(helpMessage)
 }
