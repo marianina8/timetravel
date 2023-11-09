@@ -33,23 +33,23 @@ func timeTravelHelp(cmd *cobra.Command, args []string) {
 	helpMessage := "\n"
 	helpMessage += fmt.Sprintf("Timetravel CLI %v%v\n\n", emoji.Automobile, emoji.HighVoltage)
 	helpMessage += header.Sprint("usage:\n")
-	helpMessage += "  " + command.Sprint("timetravel") + " [command] [arguments]\n\n"
+	helpMessage += "  " + command.Sprint("./timetravel") + " [command] [arguments]\n\n"
 	helpMessage += header.Sprint("commands:\n")
 	helpMessage += "  " + command.Sprint("to") + "        Travel to a specified daytime (in MoDDYYYYHHMi format).\n"
 	helpMessage += "            Example:\n"
-	helpMessage += "              " + example.Sprint("timetravel to 102119850120") + "\n"
+	helpMessage += "              " + example.Sprint("./timetravel to 102119850120") + "\n"
 	helpMessage += "            This will time travel to BTTF Day - Oct 21, 1985 at 01:20am.\n\n"
 	helpMessage += "            Options:\n"
 	helpMessage += "              " + option.Sprint("-o, --output") + "    Specify the output format. \n"
 	helpMessage += "                              Valid formats: text (default), json, yaml, dashboard.\n"
 	helpMessage += "                              Example:\n"
-	helpMessage += "                                " + example.Sprint("timetravel to 102119850120 -o=json") + "\n"
-	helpMessage += "                                " + example.Sprint("timetravel to 102119850120 --output=json") + "\n\n"
+	helpMessage += "                                " + example.Sprint("./timetravel to 102119850120 -o=json") + "\n"
+	helpMessage += "                                " + example.Sprint("./timetravel to 102119850120 --output=json") + "\n\n"
 	helpMessage += "            Note:\n"
 	helpMessage += "              " + "The 'dashboard' output format is a terminal dashboard meant for human consumption only.\n\n"
 	helpMessage += "  " + command.Sprint("feedback") + "  Post travel survey to gather your experience.\n"
 	helpMessage += "            Example:\n"
-	helpMessage += "              " + example.Sprint("timetravel feedback") + "\n\n"
+	helpMessage += "              " + example.Sprint("./timetravel feedback") + "\n\n"
 	helpMessage += "            Options:\n"
 	helpMessage += "              " + option.Sprint("--no-input") + "      Run the survey without user input. \n\n"
 	helpMessage += header.Sprint("options:\n")
