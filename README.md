@@ -49,8 +49,10 @@ To embark on a journey:
 
 For customized outputs, use the -o flag:
 ```bash
-./timetravel to 070417761200 -o=json
+./timetravel to 070417761200 -o=dashboard
 ```
+
+Valid formats for `-o, --output` include: text (default), json, yaml, dashboard.
 
 ### Feedback Survey
 Share your time-traveling experience:
