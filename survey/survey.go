@@ -25,9 +25,9 @@ func Skip() {
 func displayMenu() {
 	fmt.Println("How was the journey?      ")
 	fmt.Println("                             ")
-	fmt.Println("  1. Breathtaking          ")
-	fmt.Println("  2. Too fast!             ")
-	fmt.Println("  3. Can we go again?      ")
+	fmt.Println("  1. Breathtaking 😍")
+	fmt.Println("  2. Too fast! 😅")
+	fmt.Println("  3. Can we go again? 🚀")
 	fmt.Println("                             ")
 	fmt.Print("Enter your choice (1/2/3): ")
 }
