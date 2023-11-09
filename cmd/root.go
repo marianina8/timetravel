@@ -37,8 +37,8 @@ func timeTravelHelp(cmd *cobra.Command, args []string) {
 	helpMessage += header.Sprint("commands:\n")
 	helpMessage += "  " + command.Sprint("to") + "        Travel to a specified daytime (in MoDDYYYYHHMi format).\n"
 	helpMessage += "            Example:\n"
-	helpMessage += "              " + example.Sprint("timetravel to 070417761200") + "\n"
-	helpMessage += "            This will time travel to July 4, 1776 at 12:00am.\n\n"
+	helpMessage += "              " + example.Sprint("timetravel to 102119850120") + "\n"
+	helpMessage += "            This will time travel to BTTF Day - Oct 21, 1985 at 01:20am.\n\n"
 	helpMessage += "            Options:\n"
 	helpMessage += "              " + option.Sprint("-o, --output") + "    Specify the output format. \n"
 	helpMessage += "                              Valid formats: text (default), json, yaml, dashboard.\n"
