@@ -47,19 +47,6 @@ brews:
     commit_author:
       name: marianina8
 
-chocolateys:
-  - name: timetravel
-    description: A CLI tool for time travel
-    version: {{.Version}}
-    title: timetravel
-    tags: cli, golang, timetravel
-    project_url: https://github.com/marianina8/timetravel
-    maintainers:
-      - name: marianina8
-        email: mmontagnino@gmail.com
-    authors:
-      - marianina8
-
 nfpms:
   - formats:
       - rpm
