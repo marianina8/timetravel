@@ -13,7 +13,7 @@ jobs:
   chocolatey:
     name: Deploy
     runs-on: windows-latest
-    if: github.repository == 'marianina8/timetravel'
+    if: github.repository == 'github.com/marianina8/timetravel'
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
