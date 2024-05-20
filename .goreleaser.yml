@@ -47,6 +47,6 @@ brews:
     commit_author:
       name: marianina8
 
-dockers:
-  - image: marianina8/timetravel:latest
-    dockerfile: Dockerfile
+# dockers:
+#   - image: marianina8/timetravel:latest
+#     dockerfile: Dockerfile
