@@ -50,33 +50,29 @@ brews:
 chocolateys:
   - name: timetravel
     description: A CLI tool for time travel
-    package_source: ./timetravel
-    output_dir: ./dist/choco
-    homepage: https://github.com/marianina8
-    maintainers:
-      - name: marianina8
+    version: {{.Version}}
     title: timetravel
     tags: cli, golang, timetravel
     project_url: https://github.com/marianina8/timetravel
+    maintainers:
+      - name: marianina8
+        email: mmontagnino@gmail.com
+    authors:
+      - marianina8
 
 nfpms:
-  - packager: rpm
-    formats:
+  - formats:
       - rpm
     name: timetravel
+    version: {{.Version}}
     vendor: marianina8
     homepage: https://github.com/marianina8
     license: MIT
     maintainer: marianina8 <mmontagnino@gmail.com>
     description: A CLI tool for time travel
-    categories:
-      - Development
-    depends:
+    dependencies:
       - bash
       - coreutils
-    symlinks:
-      - src: /usr/local/bin/timetravel
-        dst: /usr/bin/timetravel
 
 dockers:
   - image: marianina8/timetravel:latest
