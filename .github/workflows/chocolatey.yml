@@ -26,16 +26,16 @@ jobs:
         run: |
           filename="timetravel.exe"
           url="https://github.com/${{ github.repository }}/releases/download/${{ steps.latesttag.outputs.tag }}/${filename}"
-          sed -i "s#{URL64}#${url}#g" "Assets/Choco/timetravel/tools/chocolateyinstall.ps1"
-          curl -sSL "${url}" -o "Assets/Choco/${filename}"
-          sha256=$(cat "Assets/Choco/${filename}" | sha256sum -)
-          sed -i "s/{SHA256CHECKSUM64}/${sha256:0:64}/g" "Assets/Choco/timetravel/tools/chocolateyinstall.ps1"
+          sed -i "s#{URL64}#${url}#g" "choco/tools/chocolateyinstall.ps1"
+          curl -sSL "${url}" -o "choco/${filename}"
+          sha256=$(cat "choco/${filename}" | sha256sum -)
+          sed -i "s/{SHA256CHECKSUM64}/${sha256:0:64}/g" "choco/tools/chocolateyinstall.ps1"
       - name: Set Version
         id: version
         run: |
           version=${{ steps.latesttag.outputs.tag }}
           echo "nuget=$version" >> $GITHUB_OUTPUT
-          sed -i "s/{VERSION}/${version}/g" "Assets/Choco/timetravel/timetravel.nuspec"
+          sed -i "s/{VERSION}/${version}/g" "choco/timetravel/timetravel.nuspec"
       - name: Choco Downgrade
         uses: crazy-max/ghaction-chocolatey@v3
         with:
@@ -43,7 +43,7 @@ jobs:
       - name: Pack Release
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: pack Assets/Choco/timetravel/timetravel.nuspec --outputdirectory Assets/Choco/timetravel
+          args: pack choco/timetravel/timetravel.nuspec --outputdirectory choco/timetravel
       - name: Choco Upgrade
         uses: crazy-max/ghaction-chocolatey@v3
         with:
@@ -51,4 +51,4 @@ jobs:
       - name: Upload Release
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: push Assets/Choco/timetravel/timetravel.${{ steps.version.outputs.nuget }}.nupkg -s https://push.chocolatey.org/ -k ${{ secrets.CHOCO_KEY }}
+          args: push choco/timetravel/timetravel.${{ steps.version.outputs.nuget }}.nupkg -s https://push.chocolatey.org/ -k ${{ secrets.CHOCO_KEY }}

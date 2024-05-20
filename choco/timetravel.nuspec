@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>timetravel</id>
+    <version>{{ .Version }}</version>
+    <title>Time Travel CLI</title>
+    <authors>marianina8</authors>
+    <owners>marianina8</owners>
+    <projectUrl>https://github.com/marianina8/timetravel</projectUrl>
+    <description>A CLI tool for time travel</description>
+    <tags>cli golang timetravel</tags>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
