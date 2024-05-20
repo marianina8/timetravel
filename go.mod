@@ -3,6 +3,7 @@ module github.com/marianina8/timetravel
 go 1.19
 
 require (
+	github.com/enescakir/emoji v1.0.0
 	github.com/fatih/color v1.16.0
 	github.com/mum4k/termdash v0.18.0
 	github.com/spf13/cobra v1.7.0
@@ -10,7 +11,6 @@ require (
 )
 
 require (
-	github.com/enescakir/emoji v1.0.0 // indirect
 	github.com/gdamore/tcell/v2 v2.6.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect

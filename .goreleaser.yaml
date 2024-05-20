@@ -1,0 +1,83 @@
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    ldflags:
+      - -X main.version={{.Version}}
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+brews:
+  - name: timetravel
+    homepage: https://github.com/marianina8
+    tap:
+      owner: marianina8
+      name: homebrew-timetravel
+    commit_author:
+      name: marianina8
+
+chocolateys:
+  - name: timetravel
+    description: A CLI tool for time travel
+    package_source: ./timetravel
+    output_dir: ./dist/choco
+    homepage: https://github.com/marianina8
+    maintainers:
+      - name: marianina8
+    title: timetravel
+    tags: cli, golang, timetravel
+    project_url: https://github.com/marianina8/timetravel
+
+nfpms:
+  - packager: rpm
+    formats:
+      - rpm
+    name: timetravel
+    vendor: marianina8
+    homepage: https://github.com/marianina8
+    license: MIT
+    maintainer: marianina8 <mmontagnino@gmail.com>
+    description: A CLI tool for time travel
+    categories:
+      - Development
+    depends:
+      - bash
+      - coreutils
+    symlinks:
+      - src: /usr/local/bin/timetravel
+        dst: /usr/bin/timetravel
+
+dockers:
+  - image: marianina8/timetravel:latest
+    dockerfile: Dockerfile

@@ -10,6 +10,8 @@ import (
 	"github.com/marianina8/timetravel/utils"
 )
 
+var Version = "dev"
+
 func main() {
 
 	// code to handle signal interrupts
