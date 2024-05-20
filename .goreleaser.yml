@@ -47,20 +47,6 @@ brews:
     commit_author:
       name: marianina8
 
-nfpms:
-  - formats:
-      - rpm
-    name: timetravel
-    version: {{.Version}}
-    vendor: marianina8
-    homepage: https://github.com/marianina8
-    license: MIT
-    maintainer: marianina8 <mmontagnino@gmail.com>
-    description: A CLI tool for time travel
-    dependencies:
-      - bash
-      - coreutils
-
 dockers:
   - image: marianina8/timetravel:latest
     dockerfile: Dockerfile
