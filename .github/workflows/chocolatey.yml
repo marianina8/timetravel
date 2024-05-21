@@ -1,9 +1,9 @@
 name: Chocolatey Deploy
 
 on:
-    push:
-      tags:
-        - '*'
+  push:
+    tags:
+      - '*'
 
 defaults:
   run:
