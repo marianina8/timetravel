@@ -11,7 +11,7 @@ $packageVersion = $env:chocolateyPackageVersion
 $url = "https://github.com/marianina8/timetravel/releases/download/$packageVersion/timetravel_Windows_x86_64.zip"
 
 # Define the file paths
-$zipPath = Join-Path $toolsDir 'timetravel-windows-amd64.zip'
+$zipPath = Join-Path $toolsDir 'timetravel-windows-x86-64.zip'
 $exePath = Join-Path $toolsDir 'timetravel.exe'
 
 # Download the zip file
@@ -24,7 +24,7 @@ Get-ChocolateyUnzip -FileFullPath $zipPath -Destination $toolsDir
 
 # Move the binary to the tools directory
 Write-Host "Moving timetravel.exe to $toolsDir"
-Move-Item -Path (Join-Path $toolsDir 'timetravel-windows-amd64\timetravel.exe') -Destination $exePath
+Move-Item -Path (Join-Path $toolsDir 'timetravel-windows-x86-64\timetravel.exe') -Destination $exePath
 
 # Remove the zip file
 Write-Host "Removing $zipPath"

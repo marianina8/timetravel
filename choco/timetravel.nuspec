@@ -4,8 +4,8 @@
     <id>timetravel</id>
     <version>__REPLACE__</version>
     <title>Time Travel CLI</title>
-    <authors>marianina8</authors>
-    <owners>marianina8</owners>
+    <authors>mmontagnino@gmail.com</authors>
+    <owners>mmontagnino@gmail.com</owners>
     <projectUrl>https://github.com/marianina8/timetravel</projectUrl>
     <description>A CLI tool for time travel</description>
     <tags>cli golang timetravel</tags>
