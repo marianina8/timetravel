@@ -13,7 +13,6 @@ jobs:
   chocolatey:
     name: Deploy
     runs-on: windows-latest
-    if: github.repository == 'timetravel'
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
