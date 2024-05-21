@@ -32,8 +32,6 @@
           run: pwd
         - name: List Files in Repository Root
           run: dir
-        - name: List Files in choco/timetravel
-          run: dir choco/timetravel
         - name: Set Checksum
           run: >
             filename="timetravel.exe"
