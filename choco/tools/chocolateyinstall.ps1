@@ -8,7 +8,7 @@ $binRoot = Get-ToolsLocation
 $packageVersion = $env:chocolateyPackageVersion
 
 # Define the URL for the binary package dynamically
-$url = "https://github.com/marianina8/timetravel/releases/download/v$packageVersion/timetravel-windows-amd64.zip"
+$url = "https://github.com/marianina8/timetravel/releases/download/$packageVersion/timetravel-windows-amd64.zip"
 
 # Define the file paths
 $zipPath = Join-Path $toolsDir 'timetravel-windows-amd64.zip'
