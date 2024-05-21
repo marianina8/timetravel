@@ -48,13 +48,13 @@
           run: |
             version=${{ steps.latesttag.outputs.tag }}
             echo "nuget=$version" >> $GITHUB_OUTPUT
-            sed -i "s/{VERSION}/${version}/g" "choco/timetravel/timetravel.nuspec"
+            sed -i "s/{VERSION}/${version}/g" "choco/timetravel.nuspec"
         - name: Choco Downgrade
           uses: crazy-max/ghaction-chocolatey@v3
           with:
             args: install chocolatey --version=1.2.1 --allow-downgrade -y -r --no-progress
         - name: Pack Release
-          run: choco pack choco/timetravel/timetravel.nuspec --outputdirectory
+          run: choco pack choco/timetravel.nuspec --outputdirectory
             choco/timetravel
         - name: Choco Upgrade
           uses: crazy-max/ghaction-chocolatey@v3
