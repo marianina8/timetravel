@@ -14,40 +14,57 @@ jobs:
     name: Deploy
     runs-on: windows-latest
     steps:
-      - name: Clone Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
-      - uses: oprypin/find-latest-tag@v1
         with:
-          repository: ${{ github.repository }}  # The repository to scan.
-          releases-only: true  # We know that all relevant tags have a GitHub release for them.
+          fetch-depth: 0
+
+      - name: Fetch All Tags
+        run: git fetch --tags
+
+      - name: List All Tags
+        run: git tag -l
+
+      - name: Find Latest Tag
         id: latesttag
+        run: |
+          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo "::set-output name=tag::$latest_tag"
+
+      - name: Debug Latest Tag
+        run: echo "Latest Tag: ${{ steps.latesttag.outputs.tag }}"
+
       - name: Set Checksum
         run: |
           filename="timetravel.exe"
           url="https://github.com/${{ github.repository }}/releases/download/${{ steps.latesttag.outputs.tag }}/${filename}"
+          echo "Downloading $url"
           sed -i "s#{URL64}#${url}#g" "choco/tools/chocolateyinstall.ps1"
           curl -sSL "${url}" -o "choco/${filename}"
-          sha256=$(cat "choco/${filename}" | sha256sum -)
-          sed -i "s/{SHA256CHECKSUM64}/${sha256:0:64}/g" "choco/tools/chocolateyinstall.ps1"
+          sha256=$(sha256sum "choco/${filename}" | awk '{ print $1 }')
+          sed -i "s/{SHA256CHECKSUM64}/${sha256}/g" "choco/tools/chocolateyinstall.ps1"
+
       - name: Set Version
         id: version
         run: |
           version=${{ steps.latesttag.outputs.tag }}
           echo "nuget=$version" >> $GITHUB_OUTPUT
           sed -i "s/{VERSION}/${version}/g" "choco/timetravel/timetravel.nuspec"
+
       - name: Choco Downgrade
         uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: install chocolatey --version=1.2.1 --allow-downgrade -y -r --no-progress
+
       - name: Pack Release
-        uses: crazy-max/ghaction-chocolatey@v3
-        with:
-          args: pack choco/timetravel/timetravel.nuspec --outputdirectory choco/timetravel
+        run: choco pack choco/timetravel/timetravel.nuspec --outputdirectory choco/timetravel
+
       - name: Choco Upgrade
         uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: upgrade chocolatey
-      - name: Upload Release
+
+      - name: Push to Chocolatey
         uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: push choco/timetravel/timetravel.${{ steps.version.outputs.nuget }}.nupkg -s https://push.chocolatey.org/ -k ${{ secrets.CHOCO_KEY }}
