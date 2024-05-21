@@ -48,7 +48,7 @@
           run: |
             version=${{ steps.latesttag.outputs.tag }}
             echo "nuget=$version" >> $GITHUB_OUTPUT
-            sed -i "s/{VERSION}/${version}/g" "choco/timetravel.nuspec"
+            sed -i "s/__REPLACE__/${version}/g" "choco/timetravel.nuspec"
         - name: Choco Downgrade
           uses: crazy-max/ghaction-chocolatey@v3
           with:
@@ -64,4 +64,4 @@
           uses: crazy-max/ghaction-chocolatey@v3
           with:
             args: push choco/timetravel/timetravel.${{ steps.version.outputs.nuget }}.nupkg
-              -s https://push.chocolatey.org/ -k ${{ secrets.CHOCO_KEY }}  
+              -s https://push.chocolatey.org/ -k ${{ secrets.CHOCO_KEY }}
