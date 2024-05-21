@@ -28,6 +28,12 @@
         - name: Debug Latest Tag
           run: |
             echo "Latest Tag: $steps.latesttag.outputs.tag"
+        - name: Print Working Directory
+          run: pwd
+        - name: List Files in Repository Root
+          run: dir
+        - name: List Files in choco/timetravel
+          run: dir choco/timetravel
         - name: Set Checksum
           run: >
             filename="timetravel.exe"
@@ -53,6 +59,8 @@
           uses: crazy-max/ghaction-chocolatey@v3
           with:
             args: install chocolatey --version=1.2.1 --allow-downgrade -y -r --no-progress
+        - name: Create Output Directory
+          run: mkdir -p choco/timetravel
         - name: Pack Release
           run: choco pack choco/timetravel.nuspec --outputdirectory choco/timetravel
         - name: Choco Upgrade
