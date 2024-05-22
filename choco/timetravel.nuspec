@@ -5,9 +5,9 @@
     <version>__REPLACE__</version>
     <title>Time Travel CLI</title>
     <authors>Marian Montagnino</authors>
-    <owners>Marian Montagnino</owners>
+    <packageSourceUrl>https://community.chocolatey.org/packages/timetravel/</packageSourceUrl>
     <projectUrl>https://github.com/marianina8/timetravel</projectUrl>
-    <description>A CLI tool for time travel</description>
+    <description>Welcome to the timetravel CLI! Ever wanted to dial back the clock and revisit moments in history? Or perhaps shoot forward into the future? Inspired by the classic "Back to the Future" films, timetravel allows you to (figuratively) hop into your DeLorean, punch in a date and time, and embark on a fantastic voyage through the temporal realm! (1.21 gigawatts not required.)</description>
     <tags>cli golang timetravel</tags>
   </metadata>
   <files>
