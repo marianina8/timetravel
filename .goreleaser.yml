@@ -53,7 +53,6 @@ release:
     name: timetravel
   draft: false
   prerelease: auto
-  tag: "{{ .CurrentTag }}"
 
 # dockers:
 #   - image: marianina8/timetravel:latest
