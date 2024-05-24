@@ -23,11 +23,8 @@
         - name: Find Latest Tag
           id: latesttag
           run: |
-            latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-            echo "::set-output name=tag::$latest_tag"
-        - name: Debug Latest Tag
-          run: |
-            echo "Latest Tag: $steps.latesttag.outputs.tag"
+            latest_tag=$(git tag -l | sort -V | tail -n 1)
+            echo "latest_tag=$latest_tag" >> $GITHUB_ENV
         - name: Print Working Directory
           run: pwd
         - name: List Files in Repository Root
