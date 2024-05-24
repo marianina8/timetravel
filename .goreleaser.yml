@@ -57,7 +57,6 @@ release:
 dockers:
   -
     id: timetravel
-    dockerfile: "docker/timetravel.Dockerfile"
     image_templates:
       - "gcr.io/mmontagnino/timetravel:{{ .Tag }}"
       - "gcr.io/mmontagnino/timetravel:latest"

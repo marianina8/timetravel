@@ -5,13 +5,13 @@ FROM golang:1.19
 WORKDIR /app
 
 # Copy go.mod and go.sum files
-COPY ../go.mod ../go.sum ./
+COPY go.mod go.sum ./
 
 # Download dependencies
 RUN go mod download
 
 # Copy the rest of the application code
-COPY ../. .
+COPY . .
 
 # Build the Go app
 RUN go build -o timetravel main.go
