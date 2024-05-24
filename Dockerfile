@@ -4,8 +4,8 @@ FROM golang:1.19
 # Set the current working directory inside the container
 WORKDIR /app
 
-# Copy go.mod and go.sum files
-COPY go.mod go.sum ./
+# Copy go.mod file
+COPY go.mod ./
 
 # Download dependencies
 RUN go mod download
