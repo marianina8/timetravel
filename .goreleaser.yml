@@ -57,7 +57,7 @@ release:
 
 dockers:
   - image_templates:
-      - "docker.io/marianmontagnino/timetravel:latest"
+      - docker.io/marianmontagnino/timetravel:{{.Version}}
     dockerfile: Dockerfile
     build_flag_templates:
       - "--no-cache"
@@ -71,7 +71,7 @@ nfpms:
     homepage: https://github.com/marianina8/timetravel
     maintainer: Marian Montagnino <mmontagnino@gmail.com>
     description: |-
-      Timetravel app installer package for 386 architecture.
+      Timetravel app installer package.
       Software for managing time travel configurations.
     license: MIT
     bindir: /usr/bin
