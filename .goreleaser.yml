@@ -51,8 +51,9 @@ release:
   github:
     owner: marianina8
     name: timetravel
-    draft: false
-    prerelease: true
+  draft: false
+  prerelease: auto
+  tag: "{{ .CurrentTag }}"
 
 # dockers:
 #   - image: marianina8/timetravel:latest
