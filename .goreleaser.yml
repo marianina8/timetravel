@@ -11,6 +11,7 @@ builds:
       - darwin
     ldflags:
       - -X main.version={{.Version}}
+    binary: timetravel
 
 archives:
   - format: tar.gz
