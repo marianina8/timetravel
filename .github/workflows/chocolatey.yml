@@ -47,7 +47,7 @@
         - name: Set Version
           id: version
           run: |
-            version=${{ steps.latesttag.outputs.tag }}
+            version=${{ env.latest_tag }}
             echo "nuget=$version" >> $GITHUB_OUTPUT
             sed -i "s/__REPLACE__/${version}/g" "choco/timetravel.nuspec"
         - name: Choco Downgrade

@@ -7,9 +7,6 @@ COPY . /app
 # Set the current working directory inside the container
 WORKDIR /app
 
-# Download dependencies
-RUN go mod download
-
 # Build the Go app
 RUN go build -o timetravel main.go
 
