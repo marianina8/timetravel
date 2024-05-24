@@ -55,9 +55,5 @@ release:
   prerelease: auto
 
 dockers:
-  -
-    id: timetravel
-    skip_build: false
-    skip_push: false
-    dockerfile: "docker/timetravel.Dockerfile"
-    use: docker
+  id: timetravel
+  dockerfile: "docker/timetravel.Dockerfile"
