@@ -63,8 +63,8 @@ dockers:
       - "--no-cache"
 
 nfpms:
-  - id: timetravel_386
-    package_name: timetravel_386
+  - id: timetravel
+    package_name: timetravel
     formats:
       - deb
       - rpm
@@ -75,36 +75,3 @@ nfpms:
       Software for managing time travel configurations.
     license: MIT
     bindir: /usr/bin
-    contents:
-      - src: ./dist/timetravel_linux_386/timetravel
-        dst: /usr/bin/timetravel
-  - id: timetravel_amd64
-    package_name: timetravel_amd64
-    formats:
-      - deb
-      - rpm
-    homepage: https://github.com/marianina8/timetravel
-    maintainer: Marian Montagnino <mmontagnino@gmail.com>
-    description: |-
-      Timetravel app installer package for amd64 architecture.
-      Software for managing time travel configurations.
-    license: MIT
-    bindir: /usr/bin
-    contents:
-      - src: ./dist/timetravel_linux_amd64_v1/timetravel
-        dst: /usr/bin/timetravel
-  - id: timetravel_arm64
-    package_name: timetravel_arm64
-    formats:
-      - deb
-      - rpm
-    homepage: https://github.com/marianina8/timetravel
-    maintainer: Marian Montagnino <mmontagnino@gmail.com>
-    description: |-
-      Timetravel app installer package for arm64 architecture.
-      Software for managing time travel configurations.
-    license: MIT
-    bindir: /usr/bin
-    contents:
-      - src: ./dist/timetravel_linux_arm64/timetravel
-        dst: /usr/bin/timetravel
