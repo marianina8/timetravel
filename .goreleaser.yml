@@ -61,3 +61,20 @@ dockers:
     dockerfile: Dockerfile
     build_flag_templates:
       - "--no-cache"
+
+nfpms:
+  - id: timetravel
+    package_name: timetravel
+    formats:
+      - deb
+      - rpm
+    homepage: https://github.com/marianina8/timetravel
+    maintainer: Marian Montagnino <mmontagnino@gmail.com>
+    description: |-
+      Timetravel app installer package.
+      Software for managing time travel configurations.
+    license: MIT
+    bindir: /usr/bin
+    contents:
+      - src: ./dist/timetravel_linux_arm64/timetravel
+        dst: /usr/bin/timetravel
