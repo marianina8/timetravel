@@ -47,6 +47,13 @@ brews:
     commit_author:
       name: marianina8
 
+release:
+  github:
+    owner: marianina8
+    name: timetravel
+    draft: false
+    prerelease: true
+
 # dockers:
 #   - image: marianina8/timetravel:latest
 #     dockerfile: Dockerfile
