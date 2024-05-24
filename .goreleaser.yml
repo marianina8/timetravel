@@ -55,5 +55,6 @@ release:
   prerelease: auto
 
 dockers:
-  id: timetravel
-  dockerfile: "docker/timetravel.Dockerfile"
+  -
+    id: timetravel
+    dockerfile: "docker/timetravel.Dockerfile"
