@@ -24,7 +24,7 @@ Get-ChocolateyUnzip -FileFullPath $zipPath -Destination $toolsDir
 
 # Move the binary to the tools directory
 Write-Host "Moving timetravel.exe to $toolsDir"
-Move-Item -Path (Join-Path $toolsDir 'timetravel-windows-x86-64\timetravel.exe') -Destination $exePath
+Move-Item -Path (Join-Path $toolsDir 'timetravel.exe') -Destination $exePath
 
 # Remove the zip file
 Write-Host "Removing $zipPath"
