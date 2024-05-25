@@ -39,6 +39,9 @@ changelog:
       - '^docs:'
       - '^test:'
 
+universal_binaries:
+    replace: true
+
 brews:
   - name: timetravel
     homepage: https://github.com/marianina8
