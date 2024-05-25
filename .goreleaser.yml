@@ -43,6 +43,13 @@ universal_binaries:
   -
     replace: true
 
+release:
+  github:
+    owner: marianina8
+    name: timetravel
+  draft: false
+  prerelease: auto
+  
 brews:
   - name: timetravel
     homepage: https://github.com/marianina8
@@ -51,13 +58,6 @@ brews:
       name: homebrew-timetravel
     commit_author:
       name: marianina8
-
-release:
-  github:
-    owner: marianina8
-    name: timetravel
-  draft: false
-  prerelease: auto
 
 dockers:
   - image_templates:
